@@ -40,6 +40,7 @@ use Illuminate\Support\Facades\Route;
             Route::post('/', [AnimeController::class,'store']);
             Route::get('/{id}',[AnimeController::class,'show']);
             Route::put('/{id}', [AnimeController::class,'update']);
+            Route::delete('/{id}', [AnimeController::class,'delete']);
            
 
              

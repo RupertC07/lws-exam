@@ -9,5 +9,7 @@ interface AnimeInterface {
 
     public function show($request);
 
-    public function update($id);
+    public function update($request);
+
+    public function delete($request);
 }

@@ -2,6 +2,7 @@
 namespace App\Repositories;
 
 use App\Actions\Anime\AnimeCreateAction;
+use App\Actions\Anime\AnimeDeleteAction;
 use App\Actions\Anime\AnimeShowAction;
 use App\Actions\Anime\AnimeShowAllAction;
 use App\Actions\Anime\AnimeUpdateAction;
@@ -87,6 +88,27 @@ class AnimeRepo implements AnimeInterface{
         } catch (Exception $e) {
 
         return AppResponse::error("Internal Server Error", null,500);
+        }
+    }
+
+    public function delete($request) {
+        try {
+            //prep the action to find user
+            $actionFind = new AnimeShowAction();
+            $anime = $actionFind->execute($request->id);
+
+            if (!$anime){
+                return AppResponse::error("Anime not found", null,404);
+
+            }
+
+            //prpep the action to delete
+            $actionDel = new AnimeDeleteAction();
+            $actionDel->execute($request->id);//soft delete data
+
+            return AppResponse::success("Anime has been successfully deleted", null,200);
+        } catch (Exception $e) {
+             return AppResponse::error("Internal server Error Occur", null,500);
         }
     }
 

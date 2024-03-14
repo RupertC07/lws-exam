@@ -31,5 +31,10 @@ class AnimeController extends Controller
         return $this->animeRepo->update($request);
      }
 
+     public function delete(Request $request){
+        return $this->animeRepo->delete($request);
+     }
+
+
 
 }
