@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('anime_tbl', function (Blueprint $table) {
-            $table->uiid('id')->primary();
+            $table->uuid('id')->primary();
             $table->string('title');
             $table->string('category')->nullable(true);
             $table->string('description');
