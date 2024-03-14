@@ -3,7 +3,7 @@ namespace App\Interfaces;
 
 interface UserInterface {
 
-    //this method will used by the controller to store data of newly registered user
+    //these methods will used by the controllers
     public function store($request);
     public function auth($request);
 

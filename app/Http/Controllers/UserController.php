@@ -19,6 +19,8 @@ class UserController extends Controller
 
     public function __construct(UserInterface $userRepo)
     {
+
+        //instantiate the interface for user, so we can use all the repos that handles actions
         $this->userRepo = $userRepo;
     }
     public function store(RegistrationRequest $request)

@@ -10,6 +10,9 @@ class Anime extends Model
 {
     use HasFactory;
 
+    protected $table = 'anime_tbl'; //since our table naming is always extends 'tbl' we need to declare it
+
+
     protected $fillable = [
         "title",
         "description",
@@ -23,6 +26,8 @@ class Anime extends Model
 
     protected $primaryKey = 'id';
 
+
+    //we declare relationship so the api can be fetch with episodes with an ease
     public function episode():HasMany {
         return $this->hasMany(Episode::class, 'anime_id', 'id' );
     }

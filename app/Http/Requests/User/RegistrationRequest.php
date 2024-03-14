@@ -23,6 +23,8 @@ class RegistrationRequest extends FormRequest
      */
     public function rules(): array
     {
+
+        //set of rules or data validation that will be use by registration api
         return [
             "firstName" => [
                 "required",
@@ -60,6 +62,7 @@ class RegistrationRequest extends FormRequest
         ];
     }
 
+    //This is the extra validation after performing a data validation
     public function withValidator($validator)
     {
         $validator->after(function ($validator) {
@@ -69,16 +72,23 @@ class RegistrationRequest extends FormRequest
         });
     }
 
+
+    //this method will valdate if the email is already taken where field deleted_at is null
+    //since we are applying soft deletes, we need to make sure that we will allow the duplicaion of email as long as the other data is deleted
+    //edit: with laravel's soft deleted it is automatically read as deleted
     protected function validateEmailExists($validator)
     {
         $email = $this->input('email');
 
-        if (User::where('email', $email)->whereNull('deleted_at')->exists()) {
+        if (User::where('email', $email)->exists()) {
             $validator->errors()->add('email','The provided email already exists');
 
         }
 
     }
+
+
+    //the purpose of this method is to normalize all the contact number in database
 
     protected function normalizeContactNumber()
 {
@@ -93,11 +103,14 @@ class RegistrationRequest extends FormRequest
     }
 }
 
+ //this method will valdate if the contact number is already taken where field deleted_at is null
+    //since we are applying soft deletes, we need to make sure that we will allow the duplicaion of contact number as long as the other data is deleted
+
 protected function validateCNumExists($validator)
 {
     $contactNumber = $this->input('contactNumber');
 
-    if (User::where('contactNumber', $contactNumber)->whereNull('deleted_at')->exists()) {
+    if (User::where('contactNumber', $contactNumber)->exists()) {
         $validator->errors()->add('contactNumber','The provided contact number already exists');
     }
 }

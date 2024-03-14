@@ -21,6 +21,8 @@ class AuthRequest extends FormRequest
      */
     public function rules(): array
     {
+
+        //set of rules or the data validation that will bw use by our authenticator api or the sign in
         return [
 
             'email' => ['required','email'],

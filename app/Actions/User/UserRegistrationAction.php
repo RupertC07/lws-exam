@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Hash;
 use Ramsey\Uuid\Uuid;
 class UserRegistrationAction {
 
+
+    //actual creation of data
     public function execute($request){
         $userData = [
             "firstName" => $request->input("firstName"),

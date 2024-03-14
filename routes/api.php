@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AnimeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -20,21 +21,28 @@ use Illuminate\Support\Facades\Route;
 // });
 
 
-
-
-
+    //we used prefix so we can organize all of our apis
     Route::prefix('/user')->group(function () {
-
         Route::post('/', [UserController::class, 'store']); 
         Route::post('/auth', [UserController::class, 'auth']); 
-
+        // the following routes are what we called protected routes, since we required token to access it
         Route::middleware(['auth:sanctum'])->group(function () {
             Route::get('/', [UserController::class,'show']);
             Route::delete('/', [UserController::class,'delete']);
            Route::post('/signout', [UserController::class,'signout']);
-
         });
-    
+    });
+
+    Route::prefix('/anime')->group(function () {
+        Route::middleware(['auth:sanctum'])->group(function () {
+
+            Route::post('/', [AnimeController::class,'store']);
+            Route::get('/{id}',[AnimeController::class,'show']);
+            Route::put('/{id}', [AnimeController::class,'update']);
+
+             
+        });
+     
     });
 
     Route::post('/test', function (Request $request){
