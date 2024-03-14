@@ -12,13 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('episodes_tbl', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->bigIncrements('id');
             $table->string('title');
             $table->string('description');
             $table->string('cover');
             $table->integer('episode');
             $table->string('season');
-            $table->string('anime_id');
+            $table->unsignedBigInteger('anime_id');
             $table->softDeletesDatetime()->nullable(false); 
             $table->foreign('anime_id')->references('id')->on('anime_tbl');
             $table->timestamps();

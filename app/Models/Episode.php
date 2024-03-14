@@ -19,6 +19,11 @@ class Episode extends Model
         'episode',
     ];
 
+    protected $table = 'episodes_tbl'; //since our table naming is always extends 'tbl' we need to declare it
+
+
+
+    //declare relationship for easy data fetching
     public function anime():BelongsTo {
         return $this->belongsTo(Anime::class,'anime_id', 'id');
     }
