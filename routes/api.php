@@ -20,4 +20,32 @@ use Illuminate\Support\Facades\Route;
 // });
 
 
-Route::post('/user', [UserController::class, 'store']);     
+
+
+
+    Route::prefix('/user')->group(function () {
+
+        Route::post('/', [UserController::class, 'store']); 
+        Route::post('/auth', [UserController::class, 'auth']); 
+
+        Route::middleware(['auth:sanctum'])->group(function () {
+            Route::get('/', [UserController::class,'show']);
+           Route::post('/signout', [UserController::class,'signout']);
+
+        });
+    
+    });
+
+    Route::post('/test', function (Request $request){
+        return  $request->all();
+    
+    });
+
+    
+
+
+
+
+
+
+

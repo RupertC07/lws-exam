@@ -6,6 +6,7 @@ use App\Http\Responses\AppResponse;
 use App\Interfaces\UserInterface;
 use Exception;
 use Illuminate\Support\Facades\Auth;
+use Request;
 
 
 class UserRepo implements UserInterface {
@@ -25,15 +26,10 @@ class UserRepo implements UserInterface {
                 return AppResponse::error("Failed to register user account. PLease try again later",null, 500);
             }
 
-            //we will register user after successful registration
-            if (!Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-                return AppResponse::error("Failed to log in user after registration", null, 500);
-            }
-            $user = Auth::user();
-            $token = $user->createToken("token")->plainTextToken;
+            $token = $data->createToken("token")->plainTextToken;
             $data = [
                 "token"=> $token,
-                "user" => $user
+                "user" => $data
             ];
             return AppResponse::success( "Account has been successfully registered",$data, 201);
         } catch (Exception $e) {
@@ -41,5 +37,51 @@ class UserRepo implements UserInterface {
         }
     }
 
-   
+    public function auth($request) {
+        try {
+            
+            if (!Auth::attempt(['email' => $request->email, 'password' => $request->password, 'deleted_at' => null])) {
+                return AppResponse::error('Invalid login credentials. Please try again', null, 401 );
+            }
+
+            $user = Auth::user();
+            $token = $user->createToken('token')->plainTextToken;
+
+            return AppResponse::success('User has been successfully logged in',$token, 200);
+        } catch (Exception $e) {
+
+            return AppResponse::error( $e->getMessage() , null,500);
+            //throw $th;
+        }
+    }
+
+    public function signout($request)
+    {
+        try {
+            $user = $request->user();
+            $user->tokens()->delete(); 
+            return AppResponse::success('User has been successfully logged out', null, 200);
+        } catch (Exception $e) {
+            return AppResponse::error("Internal Server Error Occurred", null, 500);
+        }
+    }
+
+    public function show($request)
+    {
+
+        try {
+            $user = $request->user();
+          
+            return AppResponse::success('User has been successfullyfetched', $user, 200);
+        } catch (Exception $e) {
+            return AppResponse::error("Internal Server Error Occurred", null, 500);
+        }
+
+    }
+
+
+
+
+    
+    
 }
