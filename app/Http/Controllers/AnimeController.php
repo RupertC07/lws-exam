@@ -15,6 +15,10 @@ class AnimeController extends Controller
         $this->animeRepo = $animeRepo;
     }
 
+    public function index(Request $request){
+        return $this->animeRepo->index($request);
+    }
+
     public function store(AnimeCreationRequest $request){
         return $this->animeRepo->store($request);
      }
@@ -26,4 +30,6 @@ class AnimeController extends Controller
      public function update(Request $request){
         return $this->animeRepo->update($request);
      }
+
+
 }

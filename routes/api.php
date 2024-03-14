@@ -36,9 +36,11 @@ use Illuminate\Support\Facades\Route;
     Route::prefix('/anime')->group(function () {
         Route::middleware(['auth:sanctum'])->group(function () {
 
+            Route::get('/',[AnimeController::class,'index']);
             Route::post('/', [AnimeController::class,'store']);
             Route::get('/{id}',[AnimeController::class,'show']);
             Route::put('/{id}', [AnimeController::class,'update']);
+           
 
              
         });

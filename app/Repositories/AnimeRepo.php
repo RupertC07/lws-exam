@@ -3,12 +3,25 @@ namespace App\Repositories;
 
 use App\Actions\Anime\AnimeCreateAction;
 use App\Actions\Anime\AnimeShowAction;
+use App\Actions\Anime\AnimeShowAllAction;
 use App\Actions\Anime\AnimeUpdateAction;
 use App\Http\Responses\AppResponse;
 use App\Interfaces\AnimeInterface;
 use Exception;
 
 class AnimeRepo implements AnimeInterface{
+
+    public function index($request) {
+        try {
+            //prep the action to fetch all data
+            $action = new AnimeShowAllAction();
+            $anime = $action->execute($request);
+
+            return AppResponse::success("Anime has been successfully fetched", $anime,200);
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+    }
 
     public function store($request) {
         try {
@@ -76,4 +89,6 @@ class AnimeRepo implements AnimeInterface{
         return AppResponse::error("Internal Server Error", null,500);
         }
     }
+
+  
 }
