@@ -39,4 +39,9 @@ class UserController extends Controller
     public function show(Request $request){
         return $this->userRepo->show($request);
     }
+
+    public function delete(Request $request){
+        return $this->userRepo->delete($request);
+    }
+
 }

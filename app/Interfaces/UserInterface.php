@@ -11,6 +11,8 @@ interface UserInterface {
 
     public function show($request);
 
+    public function delete($request);
+
   
    
 }

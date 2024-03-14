@@ -1,5 +1,6 @@
 <?php
 namespace App\Repositories;
+use App\Actions\User\UserDeleteFunction;
 use App\Actions\User\UserRegistrationAction;
 use App\Http\Responses\AppResponse;
 
@@ -79,6 +80,19 @@ class UserRepo implements UserInterface {
 
     }
 
+    public function delete($request){
+
+        try {
+            $user = $request->user();
+            $action = new UserDeleteFunction();
+
+            $delete = $action->execute($user->id);
+
+            return AppResponse::success("User account has been successfully deleted", null,200);
+        } catch (Exception $e) {
+            return AppResponse::error("Internal Server Error Occurred", null, 500);
+        }
+    }
 
 
 

@@ -30,6 +30,7 @@ use Illuminate\Support\Facades\Route;
 
         Route::middleware(['auth:sanctum'])->group(function () {
             Route::get('/', [UserController::class,'show']);
+            Route::delete('/', [UserController::class,'delete']);
            Route::post('/signout', [UserController::class,'signout']);
 
         });

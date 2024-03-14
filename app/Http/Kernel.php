@@ -70,5 +70,6 @@ class Kernel extends HttpKernel
     protected $routeMiddleware = [
       
         'api.key' => \App\Http\Middleware\ApiKeyChecker::class,
+        'user.exists' => \App\Http\Middleware\ExistenceChecker::class,
     ];
 }
