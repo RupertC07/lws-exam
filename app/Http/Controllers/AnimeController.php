@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Actions\Anime\AnimeCreateAction;
 use App\Http\Requests\Anime\AnimeCreationRequest;
+use App\Http\Requests\Anime\AnimeUpdateRequest;
 use App\Interfaces\AnimeInterface;
 use Illuminate\Http\Request;
 
@@ -23,11 +24,11 @@ class AnimeController extends Controller
         return $this->animeRepo->store($request);
      }
 
-     public function show(AnimeCreationRequest $request){
+     public function show(Request $request){
         return $this->animeRepo->show($request);
      }
 
-     public function update(Request $request){
+     public function update(AnimeUpdateRequest $request){
         return $this->animeRepo->update($request);
      }
 

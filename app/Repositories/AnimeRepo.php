@@ -59,13 +59,6 @@ class AnimeRepo implements AnimeInterface{
 
     public function  update($request) {
         try {
-            if (!isset($request->id)) {
-
-                //throw an error if id is not exists
-
-                return AppResponse::error("Id is required", null,400);
-                # code...
-            }
             //instantiate an action
             $actionFind = new AnimeShowAction();
             $anime = $actionFind->execute($request->id);

@@ -9,6 +9,8 @@ class UserRegistrationAction {
 
     //actual creation of data
     public function execute($request){
+
+        //prepare the data
         $userData = [
             "firstName" => $request->input("firstName"),
             "middleName"=> $request->input("middleName") == null ? '' : $request->input("middleName"),

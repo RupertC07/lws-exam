@@ -4,7 +4,7 @@ namespace App\Http\Requests\Anime;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AnimeCreationRequest extends FormRequest
+class AnimeUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,6 +22,7 @@ class AnimeCreationRequest extends FormRequest
     public function rules(): array
     {
         return [
+            
             "title"=> [
                 "required",
                 "string",
@@ -47,7 +48,7 @@ class AnimeCreationRequest extends FormRequest
                 "nullable"
             ],
             "image" => [
-                "required",
+                "sometimes",//since this is an update make it as sometimes so we don't require new image every update request
                "image",
                "mimes:jpeg,png,jpg,gif" ,
                "max:5120", //Max size is 5mb
@@ -98,7 +99,4 @@ class AnimeCreationRequest extends FormRequest
        
     }
 
-
-  
- 
 }
