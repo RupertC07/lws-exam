@@ -87,15 +87,10 @@ class AnimeCreationRequest extends FormRequest
 
     protected function validateStatus($validator)
     {
-        if(isset($status)) {
-
-            $status = ucfirst($this->input('status'));
-            if (!in_array($status, ['On going','Coming Soon', 'Ended', 'Available'])){//validate and limit the status that will be eneter by user
-                $validator->errors()->add('type','Type is invaild allowed types are series or movie');
-            }
-
+        $status = ucfirst($this->input('status'));
+        if (!in_array($status, ['On going','Coming Soon', 'Ended', 'Available'])){//validate and limit the status that will be eneter by user
+            $validator->errors()->add('status','Status is invalid only On going, Coming Soon, Ended, and Available is allowed');
         }
-       
     }
 
 
