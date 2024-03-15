@@ -90,7 +90,7 @@ class AnimeCreationRequest extends FormRequest
         if(isset($status)) {
 
             $status = ucfirst($this->input('status'));
-            if (!in_array($status, ['On Going','Coming Soon', 'Ended', 'Available'])){//validate and limit the status that will be eneter by user
+            if (!in_array($status, ['On going','Coming Soon', 'Ended', 'Available'])){//validate and limit the status that will be eneter by user
                 $validator->errors()->add('type','Type is invaild allowed types are series or movie');
             }
 

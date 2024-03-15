@@ -22,25 +22,25 @@ use Illuminate\Support\Facades\Route;
 
 
     //we used prefix so we can organize all of our apis
-    Route::prefix('/user')->group(function () {
-        Route::post('/', [UserController::class, 'store']); 
-        Route::post('/auth', [UserController::class, 'auth']); 
+    Route::prefix('/v1/user')->group(function () {
+        Route::post('/', [UserController::class, 'store']);//route for user registration
+        Route::post('/auth', [UserController::class, 'auth']); //route for user authentication
         // the following routes are what we called protected routes, since we required token to access it
         Route::middleware(['auth:sanctum'])->group(function () {
-            Route::get('/', [UserController::class,'show']);
-            Route::delete('/', [UserController::class,'delete']);
-           Route::post('/signout', [UserController::class,'signout']);
+            Route::get('/', [UserController::class,'show']);//route to get the profile
+            Route::delete('/', [UserController::class,'delete']);//route for user deletion
+           Route::post('/signout', [UserController::class,'signout']);//route for signout
         });
     });
 
-    Route::prefix('/anime')->group(function () {
+    Route::prefix('/v1/anime')->group(function () {
         Route::middleware(['auth:sanctum'])->group(function () {
 
-            Route::get('/',[AnimeController::class,'index']);
-            Route::post('/', [AnimeController::class,'store']);
-            Route::get('/{id}',[AnimeController::class,'show']);
-            Route::put('/{id}', [AnimeController::class,'update']);
-            Route::delete('/{id}', [AnimeController::class,'delete']);
+            Route::get('/',[AnimeController::class,'index']);//route to fetch all the anime available
+            Route::post('/', [AnimeController::class,'store']);//route to store new Anime
+            Route::get('/{id}',[AnimeController::class,'show']);//route to show a single anime
+            Route::put('/{id}', [AnimeController::class,'update']);//route to update existing anime
+            Route::delete('/{id}', [AnimeController::class,'delete']);//route to delete/remove existing anime
            
 
              
@@ -48,10 +48,10 @@ use Illuminate\Support\Facades\Route;
      
     });
 
-    Route::post('/test', function (Request $request){
-        return  $request->all();
+    // Route::post('/test', function (Request $request){
+    //     return  $request->all();
     
-    });
+    // });
 
     
 

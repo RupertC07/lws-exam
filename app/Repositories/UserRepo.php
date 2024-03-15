@@ -31,11 +31,11 @@ class UserRepo implements UserInterface {
             $token = $data->createToken("token")->plainTextToken;
             $data = [
                 "token"=> $token,
-                // "user" => $data
+                "user" => $data
             ];
             return AppResponse::success( "Account has been successfully registered",$data, 201);
         } catch (Exception $e) {
-            return AppResponse::error($e->getMessage(), null,500);
+            return AppResponse::error('Internal Error Server Occur', null,500);
         }
     }
 
@@ -52,11 +52,15 @@ class UserRepo implements UserInterface {
             //instantiate user then create token
             $user = Auth::user();
             $token = $user->createToken('token')->plainTextToken;
+            $data = [
+                "token"=> $token,
+          
+            ];
 
-            return AppResponse::success('User has been successfully logged in',$token, 200);
+            return AppResponse::success('User has been successfully logged in',$data, 200);
         } catch (Exception $e) {
 
-            return AppResponse::error( $e->getMessage() , null,500);
+            return AppResponse::error('Internal Server Error Occur', null,500);
             //throw $th;
         }
     }

@@ -32,7 +32,7 @@ class AnimeRepo implements AnimeInterface{
             $data =$action->execute($request);
             return AppResponse::success("Anime has been successfully uploaded", $data, 201);
         } catch (Exception $e) {
-            return AppResponse::error($e->getMessage(), null, 500);
+            return AppResponse::error('Internal Server Error Occur', null, 500);
         }
     }
 

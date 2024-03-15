@@ -55,6 +55,7 @@ class RegistrationRequest extends FormRequest
             ],
             "password"=> [
                 "required",
+                "min:8",
                 'confirmed'
             ],
             'password_confirmation' => 'required|string|min:8',
