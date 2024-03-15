@@ -78,12 +78,20 @@ Follow these steps to install and set up the application:
     ```shell
         php artisan migrate
 
-9. **Start the server:**
+8. **To make images available:**
+   run this 
+    ```shell
+    php artisan storage:link
+   
+
+10. **Start the server:**
 
     run this 
 
     ```shell
     php artisan serve
+
+
 
 
 ### Aight! Our project setup is done!
