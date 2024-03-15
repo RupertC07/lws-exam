@@ -23,6 +23,7 @@ class AnimeCreateAction {
                  //pass the name here so we can delete it at catch
                  $this->imageName = $imageData["name"];
 
+                 //preparation of data
                  $animeData = [
                     "title" => $request->title,
                     "description"=> $request->description,
