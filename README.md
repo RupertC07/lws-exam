@@ -97,6 +97,8 @@ NOTE : all of the api enpoints are secured via x-api-key on the headers so make 
 
 #### Endpoints:
 
+default url : http://127.0.0.1:8000
+
 
 #### Users
 - `POST /api/v1/user/`: Create a new user account / Register an account.
