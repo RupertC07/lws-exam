@@ -1,66 +1,192 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Anime API
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Overview
+The Anime API is a RESTful API that provides CRUD (Create, Read, Update, Delete) operations for managing anime data. It also includes user authentication features, allowing users to sign up, sign in, and view their profiles.
 
-## About Laravel
+## Main Functionalities
+- **Sign Up:** Users can create a new account by providing their details.
+- **Sign In:** Registered users can sign in to access the API's features.
+- **Logout:** Users can securely log out from their accounts.
+- **Fetch Profile:** Authenticated users can retrieve their profile information.
+- **Delete Account:** Users have the option to delete their accounts.
+- **Store New Anime:** Authenticated users can add new anime entries to the database.
+- **Update Existing Anime:** Users can edit and update existing anime details.
+- **Show All Anime:** Users can view a list of all available anime entries.
+- **Show Single Anime:** Users can retrieve detailed information about a specific anime.
+- **Delete Anime:** Users with appropriate permissions can remove anime entries.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Installation and Setup
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Requirements
+Before setting up the application, ensure that you have the following requirements installed on your system:
+- **PHP 8.1:** Ensure that PHP 8.1 or later is installed on your system.
+- **XAMPP/Laragon:** Set up XAMPP or Laragon to serve as your local development environment for the database.
+- **Composer:** Make sure Composer is installed on your system to manage PHP dependencies.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Installation Steps
+Follow these steps to install and set up the application:
 
-## Learning Laravel
+1. **Clone the Repository:**
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+    ```shell
+    git clone https://github.com/RupertC07/lws-exam.git
+    
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+2. **Navigate to Project Directory:**
+   
+    ```shell
+    cd lws-exam
+    
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+3. **Install Dependencies:**
+   
+    ```shell
+    composer install
+    
 
-## Laravel Sponsors
+4.  **After Installation Configure Environment Variables:**
+    On project directory you will find .env.example copy it and remove '.example'
+    On the database part, please ensure that it will be reflected based on your credentials
+    Example :
+    
+       ```shell
+            DB_CONNECTION=mysql
+            DB_HOST=127.0.0.1
+            DB_PORT=3306
+            DB_DATABASE=your databasename
+            DB_USERNAME=your database username
+            DB_PASSWORD=your database/server password
+       
+       
+5. **Extra Configure on Environment Variables:**
+   On the bottom part of our env file, you will see a variable named ANIME_APP_API
+   That will serve as our api key so not anyone can use the api as long as they have api key and same with
+    the server's api key. Fill it based on your preferences
+   Ex:
+   
+    ```shell
+        ANIME_API_KEY=Test12345678910
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+6. **Set Up Your Database Server:**
+    Start your Laragon or Xampp
+    
+7. **Migrate All the Tables from Project Directory:**
 
-### Premium Partners
+    run this to your cmd/bash
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+    ```shell
+        php artisan migrate
 
-## Contributing
+8. **Start the server:**
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+    run this 
 
-## Code of Conduct
+    ```shell
+    php artisan serve
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-## Security Vulnerabilities
+### Aight! Our project setup is done!
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### API DOCUMENTATION
+
+NOTE : all of the api enpoints are secured via x-api-key on the headers so make sure that every request
+        included an api key that being stored in your env that we set up
+
+
+#### Endpoints:
+
+
+#### Users
+- `POST /api/v1/user/`: Create a new user account / Register an account.
+- 
+    Data needed[via form data] :
+      {
+          'firstName' : string & required,
+          'middleName' : string & nullable,
+          'lastName' : string & required,
+          'email' : string & email & required,
+          'dob' : date & required & in format YYYY-MM-DD
+          'contactNumber' : string & required,
+          'password' : string & min:8 & required & must be confirmed via pasword_confirmation field 
+    }
+
+  Successful response : token
+  
+- `POST /api/v1/user/auth/`: Log in and obtain an authentication token.
+
+     Data needed[via form data] :
+      {
+          'email' : string & email & required
+          'password' : string & required 
+      }
+
+   Successful response : token
+      
+- `POST /api/v1/user/signout`: Log out and invalidate the authentication token [Secured via bearer token]
+
+  Successful response : success status, message, data, and code
+  
+- `GET /api/v1/user/`: Get user profile [Secured via bearer token]
+
+    Successful response : user profile
+  
+- `DELETE /api/v1/user/`: Delete user account [Secured via bearer token]
+
+   Successful response : success status, message, data, and code
+
+#### ANIME
+
+- `GET /api/v1/anime/`: fetch all the available anime[Secured via bearer token].
+
+   Successful response : success status, message, data, and code
+  
+- `POST /api/v1/anime/`: Store new anime [Secured via bearer token].
+
+   Data needed[via form data] :
+      {
+          'title' : string & required,
+          'description' : string & required,
+          'category[index]' : string & required,
+          'publisher' : string & nullable,
+          'image' : required & image & mime:jpeg,png,jpg,gif & Max 5MB
+          'type' : string & required & only allowed [series, movie],
+          'status' : string & required & only allowed [On Going, Coming Soon, Ended, Available],
+    }
+
+   Successful response : success status, message, data, and code
+
+- `GET /api/v1/anime/{id}`: Get single anime [Secured via bearer token].
+    
+     Successful response : success status, message, data, and code
+
+- `PUT /api/v1/anime/{id}`: update an existing anime [Secured via bearer token].
+
+  Data needed[via form data] :
+      {
+          'title' : string & required,
+          'description' : string & required,
+          'category[index]' : string & required,
+          'publisher' : string & nullable,
+          'image' : sometimes & image & mime:jpeg,png,jpg,gif & Max 5MB
+          'type' : string & required & only allowed [series, movie],
+          'status' : string & required & only allowed [On Going, Coming Soon, Ended, Available],
+    }
+
+   request must be on POST but it should have a method query for the form data works as usual
+  
+   example : POST : localhost:3000/api/v1/anime/{id}?_method=PUT
+  
+   Successful response : success status, message, data, and code
+
+
+- `DELETE /api/v1/anime/{id}`: Delete an existing anime [Secured via bearer token].
+
+   Successful response : success status, message, data, and code
+
+    
+
+
+
+
