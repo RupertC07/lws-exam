@@ -72,12 +72,13 @@ Follow these steps to install and set up the application:
     
 7. **Migrate All the Tables from Project Directory:**
 
+   Though laravel has the capability to create database, it's safe to ensure that you already creayed a database for this project.
     run this to your cmd/bash
 
     ```shell
         php artisan migrate
 
-8. **Start the server:**
+9. **Start the server:**
 
     run this 
 
